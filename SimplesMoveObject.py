@@ -45,14 +45,14 @@ def moveAllObjectsAnotherCollection(cFrom, cTo, stayObjs = False):
             coll_from.objects.unlink(obj_del)
         
 
-def moveJustOneObject(collFrom, obj, collTo, stayObjt = False):
+def moveJustOneObject(cFrom, obj, cTo, stayObjt = False):
     
     # If collection is not empty then true or false
-    hasObj = len(list(bpy.data.collections[collFrom].all_objects)) > 0
+    hasObj = len(list(bpy.data.collections[cFrom].all_objects)) > 0
      
     # Here get the object specific in the collection 'from'
     if hasObj:
-        coll_from_obj = bpy.data.collections[collFrom].all_objects[obj]
+        coll_from_obj = bpy.data.collections[cFrom].all_objects[obj]
         
         # add the object for delete
         obj_unlink = coll_from_obj
@@ -62,13 +62,13 @@ def moveJustOneObject(collFrom, obj, collTo, stayObjt = False):
     
     if hasObj:
         # add object the another collection
-        coll_to = bpy.data.collections[collTo].objects.link(coll_from_obj)
+        coll_to = bpy.data.collections[cTo].objects.link(coll_from_obj)
     else:
         print("This object not found in this collection!")
         
     # remove object of the current view
     if stayObjt == False:
-        bpy.data.collections[collFrom].objects.unlink(obj_unlink)
+        bpy.data.collections[cFrom].objects.unlink(obj_unlink)
 
         
 moveAllObjectsAnotherCollection('DEMO.001', 'Collection', False)
